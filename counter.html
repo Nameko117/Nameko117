@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>計數器</title>
+</head>
+<body>
+    <h1>計數器</h1>
+    
+    <p>用戶名稱：<span id="username"></span></p>
+    <p>計數：<span id="counter">0</span></p>
+    
+    <button id="increment">加一</button>
+    <button id="reset">重置</button>
+
+    <p><a href="index.html">返回入口網頁</a></p>
+
+    <script>
+        // 獲取用戶名稱、計數器元素和按鈕的元素
+        var usernameElement = document.getElementById("username");
+        var counterElement = document.getElementById("counter");
+        var incrementButton = document.getElementById("increment");
+        var resetButton = document.getElementById("reset");
+
+        // 獲取儲存在本地存儲中的用戶名稱
+        var savedUsername = localStorage.getItem("username");
+
+        // 如果本地存儲中有用戶名稱，則顯示歡迎消息
+        if (savedUsername) {
+            usernameElement.textContent = savedUsername;
+        }
+
+        // 加一按鈕的點擊事件處理程序
+        incrementButton.addEventListener("click", function () {
+            var counter = parseInt(counterElement.textContent);
+            counter++;
+            counterElement.textContent = counter;
+
+            // 將計數儲存到本地存儲中
+            localStorage.setItem(savedUsername, counter.toString());
+        });
+
+        // 重置按鈕的點擊事件處理程序
+        resetButton.addEventListener("click", function () {
+            counterElement.textContent = "0";
+
+            // 重置計數並更新本地存儲
+            localStorage.setItem(savedUsername, "0");
+        });
+    </script>
+</body>
+</html>
