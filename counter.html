@@ -31,6 +31,14 @@
             usernameElement.textContent = savedUsername;
         }
 
+        // 獲取儲存在本地存儲中的計數數據，如果不存在，則初始化為0
+        var savedCounter = localStorage.getItem(savedUsername + "_counter");
+        if (savedCounter) {
+            counterElement.textContent = savedCounter;
+        } else {
+            counterElement.textContent = "0";
+        }
+
         // 加一按鈕的點擊事件處理程序
         incrementButton.addEventListener("click", function () {
             var counter = parseInt(counterElement.textContent);
@@ -38,7 +46,7 @@
             counterElement.textContent = counter;
 
             // 將計數儲存到本地存儲中
-            localStorage.setItem(savedUsername, counter.toString());
+            localStorage.setItem(savedUsername + "_counter", counter.toString());
         });
 
         // 重置按鈕的點擊事件處理程序
@@ -46,7 +54,7 @@
             counterElement.textContent = "0";
 
             // 重置計數並更新本地存儲
-            localStorage.setItem(savedUsername, "0");
+            localStorage.setItem(savedUsername + "_counter", "0");
         });
     </script>
 </body>
