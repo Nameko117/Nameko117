@@ -3,12 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的網頁</title>
+    <title>JavaScript 變數和存儲示例</title>
 </head>
 <body>
-    <h1>歡迎來到我的網站</h1>
-    <p>這是我的第一個網頁。</p>
-    <img src="neko.png" alt="我的圖片">
-    <a href="https://www.example.com">訪問示例網站</a>
+    <h1>JavaScript 變數和存儲示例</h1>
+
+    <!-- 創建一個表單，用於輸入和存儲用戶名稱 -->
+    <form id="userForm">
+        <label for="username">用戶名稱:</label>
+        <input type="text" id="username" name="username">
+        <button type="submit">保存</button>
+    </form>
+
+    <p id="greeting"></p>
+
+    <script>
+        // 聲明一個JavaScript變數
+        var greeting = "歡迎訪問我們的網站！";
+
+        // 從localStorage中讀取用戶名稱
+        var savedUsername = localStorage.getItem("username");
+
+        // 如果localStorage中有保存的用戶名稱，則顯示個性化的歡迎消息
+        if (savedUsername) {
+            document.getElementById("greeting").textContent = greeting + " " + savedUsername;
+        }
+
+        // 註冊表單提交事件處理程序
+        document.getElementById("userForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // 防止表單提交刷新頁面
+
+            // 獲取用戶輸入的用戶名稱
+            var usernameInput = document.getElementById("username").value;
+
+            // 保存用戶名稱到localStorage
+            localStorage.setItem("username", usernameInput);
+
+            // 更新歡迎消息
+            document.getElementById("greeting").textContent = greeting + " " + usernameInput;
+        });
+    </script>
 </body>
 </html>
